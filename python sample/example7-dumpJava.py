@@ -4,15 +4,14 @@ import GdaImport
 def GDA_MAIN(gda_obj):
     gda=gda_obj
     Dex0=gda.DexList[0]
-    code=""     
+    code=""
     for classCode in Dex0.ClassList:
         code=gda.GetClassCodeById_Ex(classCode.idx)
         if len(code)>1000:# only dump a class code whoes length is bigger than 1000 bytes 
             gda.log(code)
             javaFileName=classCode.className;
             javaFileName+='.java'
-            tofile = open(javaFileName,'w')
-            tofile.write(code)
-            tofile.close()
+            with open(javaFileName,'w') as tofile:
+                tofile.write(code)
             break;
     return 0

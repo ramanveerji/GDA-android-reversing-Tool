@@ -13,8 +13,7 @@ def GDA_MAIN(gda_obj):
     #  
     per+=gda_obj.GetPermission()
     gda_obj.log(per)
-    tofile = open('out.txt','w')
-    tofile.write(per)
-    tofile.close()
+    with open('out.txt','w') as tofile:
+        tofile.write(per)
     return 0
     

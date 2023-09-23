@@ -2,13 +2,10 @@ import GdaImport
 #gjden
 #example of decoding strings which is located by bytecode fingerprint.
 def printStringHex(stri): 
-    ret=''
-    for ch in stri:
-        ret+="%02x " % (ord(ch))
-    return ret
+    return ''.join("%02x " % (ord(ch)) for ch in stri)
 def decodeString(gda,idx):
     rawstr=gda.GetStringById(idx)
-    if rawstr==None:
+    if rawstr is None:
         return ''
     stri=rawstr
     ret=list(stri)
@@ -21,8 +18,7 @@ def decodeString(gda,idx):
         i=i-1
         ret[i]=chr(ord(stri[i])^101)
         i=i-1
-    xx = ''.join(ret)   
-    return xx
+    return ''.join(ret)
 
 def GDA_MAIN(gda_obj):
     gda=gda_obj
